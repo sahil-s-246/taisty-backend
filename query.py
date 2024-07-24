@@ -73,7 +73,7 @@ def give_random():
 
 
 q = st.text_input("What would you like to have:")
-st.info("Please describe your preference eg: Indian or Japanese, Veg or Non-Veg etc. "
+st.info("Please describe your preference eg: Indian or Japanese, Veg or Non-Veg, Sweet or Spicy etc. "
         "Or Click 'I'm Feeling Lucky' for a random suggestion")
 st.warning("Rn there are only 2 cuisines : Indian and Japanese😅")
 if q:
