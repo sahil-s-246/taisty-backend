@@ -1,0 +1,62 @@
+{
+    "Paneer Butter Masala": {
+        "cuisine": "Indian",
+        "category": "Veg",
+        "description": "A rich and creamy tomato-based curry with soft paneer cubes, delicately spiced for a mild heat.",
+        "allergy": "Contains dairy"
+    },
+    "Sheer Korma": {
+        "cuisine": "Indian",
+        "category": "Veg",
+        "description": "A rich and creamy dessert made with vermicelli, milk, dates, and nuts. A traditional Eid dish.",
+        "allergy": "Contains dairy, nuts"
+    },
+    "Gulab Jamun": {
+        "cuisine": "Indian",
+        "category": "Veg",
+        "description": "Sweet and soft milk-based balls soaked in a fragrant sugar syrup, perfect for a delightful end to your meal.",
+        "allergy": "Contains dairy"
+    },
+    "Chicken Biryani": {
+        "cuisine": "Indian",
+        "category": "Non-Veg",
+        "description": "A fragrant and flavorful rice dish with tender chicken pieces, infused with aromatic spices and saffron. Spicy.",
+        "allergy": "Contains nuts"
+    },
+    "Mochi": {
+        "cuisine": "Japanese",
+        "category": "Veg",
+        "description": "Sweet glutinous rice cakes filled with a variety of fillings, including red bean paste.",
+        "allergy": "Contains gluten"
+    },
+    "Tempura": {
+        "cuisine": "Japanese",
+        "category": "Non-Veg",
+        "description": "Battered and deep-fried seafood and vegetables, served with a dipping sauce. Crispy and delicious.",
+        "allergy": "Contains gluten, seafood"
+    },
+    "Aloo Gobi": {
+        "cuisine": "Indian",
+        "category": "Veg",
+        "description": "A classic combination of potatoes and cauliflower, cooked with spices and herbs. Mildly spicy.",
+        "allergy": "None"
+    },
+    "Onigiri": {
+        "cuisine": "Japanese",
+        "category": "Veg",
+        "description": "Rice balls typically filled with umeboshi (pickled plum), salmon, or other salty or sour ingredients, wrapped in nori.",
+        "allergy": "Contains seafood (if filled)"
+    },
+    "Butter Chicken": {
+        "cuisine": "Indian",
+        "category": "Non-Veg",
+        "description": "Tender chicken pieces in a creamy tomato-based sauce, with a perfect balance of spices. Mildly spicy.",
+        "allergy": "Contains dairy"
+    },
+    "Miso Soup": {
+        "cuisine": "Japanese",
+        "category": "Veg",
+        "description": "Traditional Japanese soup consisting of a dashi stock into which softened miso paste is mixed, along with tofu, seaweed, and green onions.",
+        "allergy": "Contains soy"
+    }
+}
