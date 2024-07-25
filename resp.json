@@ -1,15 +1,15 @@
 {
-    "Paneer Butter Masala": {
+    "Chicken Biryani": {
         "cuisine": "Indian",
-        "category": "Veg",
-        "description": "A rich and creamy tomato-based curry with soft paneer cubes, delicately spiced for a mild heat.",
-        "allergy": "Contains dairy"
+        "category": "Non-Veg",
+        "description": "A fragrant and flavorful rice dish with tender chicken pieces, infused with aromatic spices and saffron. Spicy.",
+        "allergy": "Contains nuts"
     },
-    "Sheer Korma": {
-        "cuisine": "Indian",
-        "category": "Veg",
-        "description": "A rich and creamy dessert made with vermicelli, milk, dates, and nuts. A traditional Eid dish.",
-        "allergy": "Contains dairy, nuts"
+    "Tempura": {
+        "cuisine": "Japanese",
+        "category": "Non-Veg",
+        "description": "Battered and deep-fried seafood and vegetables, served with a dipping sauce. Crispy and delicious.",
+        "allergy": "Contains gluten, seafood"
     },
     "Gulab Jamun": {
         "cuisine": "Indian",
@@ -17,11 +17,11 @@
         "description": "Sweet and soft milk-based balls soaked in a fragrant sugar syrup, perfect for a delightful end to your meal.",
         "allergy": "Contains dairy"
     },
-    "Chicken Biryani": {
-        "cuisine": "Indian",
-        "category": "Non-Veg",
-        "description": "A fragrant and flavorful rice dish with tender chicken pieces, infused with aromatic spices and saffron. Spicy.",
-        "allergy": "Contains nuts"
+    "Miso Soup": {
+        "cuisine": "Japanese",
+        "category": "Veg",
+        "description": "Traditional Japanese soup consisting of a dashi stock into which softened miso paste is mixed, along with tofu, seaweed, and green onions.",
+        "allergy": "Contains soy"
     },
     "Mochi": {
         "cuisine": "Japanese",
@@ -29,11 +29,11 @@
         "description": "Sweet glutinous rice cakes filled with a variety of fillings, including red bean paste.",
         "allergy": "Contains gluten"
     },
-    "Tempura": {
-        "cuisine": "Japanese",
-        "category": "Non-Veg",
-        "description": "Battered and deep-fried seafood and vegetables, served with a dipping sauce. Crispy and delicious.",
-        "allergy": "Contains gluten, seafood"
+    "Lassi": {
+        "cuisine": "Indian",
+        "category": "Veg",
+        "description": "A refreshing yogurt-based drink, available in sweet or salted flavors.",
+        "allergy": "Contains dairy"
     },
     "Aloo Gobi": {
         "cuisine": "Indian",
@@ -53,10 +53,10 @@
         "description": "Tender chicken pieces in a creamy tomato-based sauce, with a perfect balance of spices. Mildly spicy.",
         "allergy": "Contains dairy"
     },
-    "Miso Soup": {
+    "Sushi": {
         "cuisine": "Japanese",
-        "category": "Veg",
-        "description": "Traditional Japanese soup consisting of a dashi stock into which softened miso paste is mixed, along with tofu, seaweed, and green onions.",
-        "allergy": "Contains soy"
+        "category": "Non-Veg",
+        "description": "A delightful combination of vinegared rice and fresh raw fish, paired with crisp vegetables. Can be spicy.",
+        "allergy": "Contains seafood, soy"
     }
 }

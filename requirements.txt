@@ -2,3 +2,5 @@ weaviate-client
 streamlit
 google
 google-generativeai
+pillow
+requests
