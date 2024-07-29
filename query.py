@@ -11,8 +11,9 @@ from weaviate.exceptions import WeaviateQueryError
 
 # Example Query
 # query= "Veg Indian Dishes"
-
 genai.configure(api_key=st.secrets["API_KEY"])
+model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+
 st.title("Restaurant from Novigrad")
 with open("data.json", "r") as f:
     menu = json.load(f)
@@ -31,6 +32,17 @@ def extract_features(query_result):
             'allergy': properties.get('allergy', '')
         }
     return extracted_data
+
+
+def ask_ai_for_recommendations():
+    """Prompt AI and gemini will retrieve and rank dishes"""
+    ask_ai = st.text_input("Ask AI🤖")
+    if ask_ai:
+        res = model.generate_content([f"Recommend some dishes along with description, allegies etc. from the menu: "
+                                      f"{menu}, \n\n ranked by relevance, according to the prompt: "
+                                      f" {ask_ai} Eg. If the prompt is something like a mildly spicy gravy dish with"
+                                      f" paneer then recommend paneer butter masala"])
+        st.write(res.text)
 
 
 def recommend(query):
@@ -60,8 +72,8 @@ def recommend(query):
         with open("resp.json", 'w') as file:
             json.dump(data, file, indent=4)
         # Ranking
-        model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-        res = model.generate_content([f"Rerank json objects in this data {data} wrt query: {query}"],
+
+        res = model.generate_content([f"Rerank json objects in this data {data} \n\n according to the query: {query}"],
                                      generation_config={"response_mime_type": "application/json"})
         # print(res.text)
         result = json.loads(res.text)
@@ -75,38 +87,50 @@ def recommend(query):
 
 
 def give_random():
+    """Feeling Lucky? Get a Random dish!"""
     dish = random.choice(list(menu))
     return dish
 
 
-q = st.text_input("What would you like to have:")
-if not q:
+st.write("Enter your choice:")
+
+choice = st.selectbox("Choice", ["Custom", "ask AI"], index=None, placeholder="Custom or Ask AI...")
+if choice is None:
+    st.write({
+        "Custom": "Dishes will be retrieved according to your query from weaviate's db",
+        "ask AI": "Dishes will be recommended by gemini according to your prompt"
+    })
     st.info("Please describe your preference eg: Indian or Japanese, Veg or Non-Veg, Sweet or Spicy etc. "
             "Or Click 'I'm Feeling Lucky' for a random suggestion")
     st.warning("Rn there are only 2 cuisines : Indian and Japanese😅")
-if q:
-    order, first = recommend(q)
-    # Generate Image of first recommendation
-    API_URL = "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5"
-    headers = {"Authorization": st.secrets["hftoken"]}
-    payload = {"inputs": first["description"]}
-    response = requests.post(API_URL, headers=headers, json=payload)
-    image_bytes = response.content
-    name_of_first = list(order.keys())[0]
-    order.pop(name_of_first)
-    with st.spinner("Loading..."):
-        image = Image.open(io.BytesIO(image_bytes))
-        st.write("Recommended for You: ")
-        st.markdown(f"#### :orange[{name_of_first}]")
-        first
-        st.image(image)
-    "You might also like:"
 
-    order
-    st.warning("Some Recommendations may be inaccurate or irrelevant")
-    a = {}
+elif choice == "Custom":
+    q = st.text_input("What would you like to have🍉", placeholder="Indian sweet dish")
+    if q:
+        order, first = recommend(q)
+        # Generate Image of first recommendation
+        API_URL = "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5"
+        headers = {"Authorization": st.secrets["hftoken"]}
+        payload = {"inputs": first["description"]}
+        response = requests.post(API_URL, headers=headers, json=payload)
+        image_bytes = response.content
+        name_of_first = list(order.keys())[0]
+        order.pop(name_of_first)
+        with st.spinner("Loading..."):
+            image = Image.open(io.BytesIO(image_bytes))
+            st.write("Recommended for You: ")
+            st.markdown(f"#### :orange[{name_of_first}]")
+            st.write(first)
+            st.image(image)
+        "You might also like:"
+
+        st.write(order)
+        st.warning("Some Recommendations may be inaccurate or irrelevant")
+
+elif choice == "ask AI":
+    ask_ai_for_recommendations()
 
 click = st.button("I'm Feeling Lucky✨")
 if click:
     menu_item = give_random()
-    menu_item
+    st.write(menu_item)
