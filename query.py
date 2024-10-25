@@ -76,6 +76,32 @@ st.title("tAIsty😋")
 with open("data.json", "r") as f:
     menu = json.load(f)
 menu_limited = menu[:20]
+
+flavor_preferences = st.sidebar.multiselect(
+    "Choose flavor profiles", ["Sweet", "Spicy", "Savory", "Mild"]
+)
+
+# Concatenate selected preferences into a single string
+preference_query = " ".join(flavor_preferences)
+
+# Fetch recommendations based on combined preferences
+if preference_query:
+    recommendations, _ = recommend(preference_query)
+    st.subheader("Recommended for You")
+    recommendation_row = st.container()
+    with recommendation_row:
+        rec_items = list(recommendations.items())
+        cols = st.columns(len(rec_items))  # Set a column for each recommendation
+
+        for idx, (dish_name, rec) in enumerate(rec_items):
+            with cols[idx]:
+                with st.container(border=True):
+                    st.markdown(f"**{dish_name}**")
+                    st.write(f"Cuisine: {rec['cuisine']}")
+                    st.write(f"Category: {rec['category']}")
+                    st.write(f"Description: {rec['description']}")
+                    st.write(f"Allergy: {rec['allergy']}")
+
 # menu_limited = [random.choice(menu) for _ in range(20)]
 # Initialize session state to keep track of the total orders
 if "total_orders" not in st.session_state:
