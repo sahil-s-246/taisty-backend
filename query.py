@@ -6,18 +6,13 @@ import random
 from PIL import Image
 import requests
 import io
-
 from weaviate.exceptions import WeaviateQueryError
 
 # Example Query
 # query= "Veg Indian Dishes"
+
 genai.configure(api_key=st.secrets["API_KEY"])
 model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-
-st.title("Restaurant from Novigrad")
-with open("data.json", "r") as f:
-    menu = json.load(f)
-st.dataframe(menu)
 
 
 def extract_features(query_result):
@@ -34,24 +29,14 @@ def extract_features(query_result):
     return extracted_data
 
 
-def ask_ai_for_recommendations():
-    """Prompt AI and gemini will retrieve and rank dishes"""
-    ask_ai = st.text_input("Ask AI🤖")
-    if ask_ai:
-        res = model.generate_content([f"Recommend some dishes along with description, allegies etc. from the menu: "
-                                      f"{menu}, \n\n ranked by relevance, according to the prompt: "
-                                      f" {ask_ai} Eg. If the prompt is something like a mildly spicy gravy dish with"
-                                      f" paneer then recommend paneer butter masala"])
-        st.write(res.text)
-
-
 def recommend(query):
     """Connect to a weaviate collection in your weaviate cloud's sandbox, In this case FoodRecommend
     There are two steps in this recommendation \n
     Retrieval: Semantically search through the data wrt the query \n
     Ranking: Use Gemini Flash API to rank the data"""
 
-    result = first = {}
+    result =  {}
+    first = {}
     client = weaviate.connect_to_wcs(
         cluster_url=st.secrets["CLUSTER_URL"],
         auth_credentials=weaviate.auth.AuthApiKey(st.secrets["Weav_API_KEY"]),
@@ -66,15 +51,17 @@ def recommend(query):
         # Retrieval
         response = questions.query.near_text(
             query=query,
-            limit=10
+            limit=4
         )
         data = extract_features(response)
-        with open("resp.json", 'w') as file:
-            json.dump(data, file, indent=4)
+        # with open("resp.json", 'w') as file:
+        #     json.dump(data, file, indent=4)
         # Ranking
 
-        res = model.generate_content([f"Rerank json objects in this data {data} \n\n according to the query: {query}"],
-                                     generation_config={"response_mime_type": "application/json"})
+        res = model.generate_content(
+            [f"Rerank json objects in this data {data} \n\n according to the query: {query}\n\n"
+             f"Remove the most irrelevant ones but dont remove many"],
+            generation_config={"response_mime_type": "application/json"})
         # print(res.text)
         result = json.loads(res.text)
         first = result[list(result.keys())[0]]
@@ -84,6 +71,64 @@ def recommend(query):
     finally:
         client.close()  # Close client gracefully
     return result, first
+# ##################################################################
+st.title("tAIsty😋")
+with open("data.json", "r") as f:
+    menu = json.load(f)
+menu_limited = menu[:20]
+# menu_limited = [random.choice(menu) for _ in range(20)]
+# Initialize session state to keep track of the total orders
+if "total_orders" not in st.session_state:
+    st.session_state["total_orders"] = 0
+
+# Display each menu item in an expander
+for item in menu_limited:
+    with st.expander(item["dish"]):
+        st.write(f"**Cuisine:** {item['cuisine']}")
+        st.write(f"**Category:** {item['category']}")
+        st.write(f"**Description:** {item['description']}")
+        st.write(f"**Allergy Information:** {item['allergy']}")
+
+        # Add an order button
+        if st.button(f"Order {item['dish']}", key=f"order_{item['dish']}"):
+            st.session_state["total_orders"] += 1
+            st.write(f"{item['dish']} added to order.")
+
+        # Add a button to select the item, triggering recommendations
+        if st.button(f"View More Like {item['dish']}", key=f"select_{item['dish']}"):
+            with st.spinner(f"Generating recommendations for {item['dish']}...✨"):
+                # Call your recommendation function here
+                recommendations, first = recommend(item["dish"])
+                rec_items = list(recommendations.items())
+                for i in range(0, len(rec_items), 4):  # Display recommendations in rows of 4 dishes each
+                    cols = st.columns(4)
+                    for idx, col in enumerate(cols):
+                        if i + idx < len(rec_items):
+                            dish_name, rec = rec_items[i + idx]
+                            with col:
+                                st.markdown(f"**{dish_name}**")
+                                st.write(f"Cuisine: {rec['cuisine']}")
+                                st.write(f"Category: {rec['category']}")
+                                st.write(f"Description: {rec['description']}")
+                                st.write(f"Allergy: {rec['allergy']}")
+
+
+# Update the total order count banner
+st.markdown(f"### 🛒 Total Orders: {st.session_state['total_orders']}")
+
+
+# ##################################################################
+
+
+def ask_ai_for_recommendations():
+    """Prompt AI and gemini will retrieve and rank dishes"""
+    ask_ai = st.text_input("Ask AI🤖")
+    if ask_ai:
+        res = model.generate_content([f"Recommend some dishes along with description, allegies etc. from the menu: "
+                                      f"{menu}, \n\n ranked by relevance, according to the prompt: "
+                                      f" {ask_ai} Eg. If the prompt is something like a mildly spicy gravy dish with"
+                                      f" paneer then recommend paneer butter masala"])
+        st.write(res.text)
 
 
 def give_random():
@@ -109,7 +154,7 @@ elif choice == "Custom":
     if q:
         order, first = recommend(q)
         # Generate Image of first recommendation
-        API_URL = "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5"
+        API_URL = "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4"
         headers = {"Authorization": st.secrets["hftoken"]}
         payload = {"inputs": first["description"]}
         response = requests.post(API_URL, headers=headers, json=payload)
