@@ -3,13 +3,14 @@ import streamlit as st
 import weaviate
 import google.generativeai as genai
 import random
+from streamlit.errors import StreamlitAPIException
 from PIL import Image
 import requests
 import io
 from weaviate.exceptions import WeaviateQueryError
+from card import Card
+from filter import RecommendationFilter
 
-# Example Query
-# query= "Veg Indian Dishes"
 
 genai.configure(api_key=st.secrets["API_KEY"])
 model = genai.GenerativeModel(model_name="gemini-1.5-flash")
@@ -51,7 +52,7 @@ def recommend(query):
         # Retrieval
         response = questions.query.near_text(
             query=query,
-            limit=4
+            limit=6
         )
         data = extract_features(response)
         # with open("resp.json", 'w') as file:
@@ -75,37 +76,48 @@ def recommend(query):
 st.title("tAIsty😋")
 with open("data.json", "r") as f:
     menu = json.load(f)
-menu_limited = menu[:20]
 
-flavor_preferences = st.sidebar.multiselect(
-    "Choose flavor profiles", ["Sweet", "Spicy", "Savory", "Mild"]
+menu_limited = menu[30:50]
+# menu_limited = random.sample(menu,20)
+preference_query = st.sidebar.text_input(
+    "Your Preference🍉", placeholder="Indian dessert"
 )
 
-# Concatenate selected preferences into a single string
-preference_query = " ".join(flavor_preferences)
+selected_category = st.sidebar.selectbox("Select Category", ["Veg", "Non-Veg", "Both"])
+selected_cuisine = st.sidebar.selectbox("Select Cuisine", ["Indian", "Japanese", "Both"])
+excluded_allergies = st.sidebar.multiselect("Exclude Allergies", ["Contains dairy", "Contains gluten", "Contains nuts"])
+
 
 # Fetch recommendations based on combined preferences
 if preference_query:
     recommendations, _ = recommend(preference_query)
+    filtered_recommendations = RecommendationFilter.filter_recommendations(
+        recommendations,
+        cuisine=selected_cuisine,
+        category=selected_category,
+        allergy=excluded_allergies
+    )
     st.subheader("Recommended for You")
     recommendation_row = st.container()
     with recommendation_row:
-        rec_items = list(recommendations.items())
-        cols = st.columns(len(rec_items))  # Set a column for each recommendation
 
+        try:
+            rec_items = list(filtered_recommendations.items())
+            cols = st.columns(len(rec_items))
+        except StreamlitAPIException:
+            rec_items = list(recommendations.items())
+            st.info("We could not find any results for your request but you might like.")
+            cols = st.columns(len(rec_items))
+              # Set a column for each recommendation
         for idx, (dish_name, rec) in enumerate(rec_items):
             with cols[idx]:
-                with st.container(border=True):
-                    st.markdown(f"**{dish_name}**")
-                    st.write(f"Cuisine: {rec['cuisine']}")
-                    st.write(f"Category: {rec['category']}")
-                    st.write(f"Description: {rec['description']}")
-                    st.write(f"Allergy: {rec['allergy']}")
+                card = Card(dish_name, rec)
+                card.display()
 
 # menu_limited = [random.choice(menu) for _ in range(20)]
 # Initialize session state to keep track of the total orders
-if "total_orders" not in st.session_state:
-    st.session_state["total_orders"] = 0
+if "orders" not in st.session_state:
+    st.session_state["orders"] = 0
 
 # Display each menu item in an expander
 for item in menu_limited:
@@ -117,7 +129,7 @@ for item in menu_limited:
 
         # Add an order button
         if st.button(f"Order {item['dish']}", key=f"order_{item['dish']}"):
-            st.session_state["total_orders"] += 1
+            st.session_state["orders"] += 1
             st.write(f"{item['dish']} added to order.")
 
         # Add a button to select the item, triggering recommendations
@@ -125,22 +137,27 @@ for item in menu_limited:
             with st.spinner(f"Generating recommendations for {item['dish']}...✨"):
                 # Call your recommendation function here
                 recommendations, first = recommend(item["dish"])
-                rec_items = list(recommendations.items())
-                for i in range(0, len(rec_items), 4):  # Display recommendations in rows of 4 dishes each
-                    cols = st.columns(4)
-                    for idx, col in enumerate(cols):
-                        if i + idx < len(rec_items):
-                            dish_name, rec = rec_items[i + idx]
-                            with col:
-                                st.markdown(f"**{dish_name}**")
-                                st.write(f"Cuisine: {rec['cuisine']}")
-                                st.write(f"Category: {rec['category']}")
-                                st.write(f"Description: {rec['description']}")
-                                st.write(f"Allergy: {rec['allergy']}")
+                filtered_recommendations = RecommendationFilter.filter_recommendations(
+                    recommendations,
+                    cuisine=selected_cuisine,
+                    category=selected_category,
+                    allergy=excluded_allergies  # Add logic to handle exclusions in RecommendationFilter
+                )
+                try:
+                    rec_items = list(filtered_recommendations.items())
+                    cols = st.columns(len(rec_items))
+                except StreamlitAPIException:
+                    rec_items = list(recommendations.items())
+                    st.info("We could not find any results for your request but you might like.")
+                    cols = st.columns(len(rec_items))
+                for idx, (dish_name, rec) in enumerate(rec_items):
+                    with cols[idx]:
+                        card = Card(dish_name, rec)
+                        card.display()
 
 
 # Update the total order count banner
-st.markdown(f"### 🛒 Total Orders: {st.session_state['total_orders']}")
+st.markdown(f"### 🛒 Total Orders: {st.session_state['orders']}")
 
 
 # ##################################################################
@@ -163,43 +180,9 @@ def give_random():
     return dish
 
 
-st.write("Enter your choice:")
-
-choice = st.selectbox("Choice", ["Custom", "ask AI"], index=None, placeholder="Custom or Ask AI...")
-if choice is None:
-    st.write({
-        "Custom": "Dishes will be retrieved according to your query from weaviate's db",
-        "ask AI": "Dishes will be recommended by gemini according to your prompt"
-    })
-    st.info("Please describe your preference eg: Indian or Japanese, Veg or Non-Veg, Sweet or Spicy etc. "
-            "Or Click 'I'm Feeling Lucky' for a random suggestion")
-    st.warning("Rn there are only 2 cuisines : Indian and Japanese😅")
-
-elif choice == "Custom":
-    q = st.text_input("What would you like to have🍉", placeholder="Indian sweet dish")
-    if q:
-        order, first = recommend(q)
-        # Generate Image of first recommendation
-        API_URL = "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4"
-        headers = {"Authorization": st.secrets["hftoken"]}
-        payload = {"inputs": first["description"]}
-        response = requests.post(API_URL, headers=headers, json=payload)
-        image_bytes = response.content
-        name_of_first = list(order.keys())[0]
-        order.pop(name_of_first)
-        with st.spinner("Loading..."):
-            image = Image.open(io.BytesIO(image_bytes))
-            st.write("Recommended for You: ")
-            st.markdown(f"#### :orange[{name_of_first}]")
-            st.write(first)
-            st.image(image)
-        "You might also like:"
-
-        st.write(order)
-        st.warning("Some Recommendations may be inaccurate or irrelevant")
-
-elif choice == "ask AI":
-    ask_ai_for_recommendations()
+st.info("Please describe your preference eg: Indian or Japanese, Veg or Non-Veg, Sweet or Spicy etc. in the sidebar"
+        "Or Click 'I'm Feeling Lucky' for a random suggestion")
+st.warning("Right now, there are only 2 cuisines : Indian and Japanese😅")
 
 click = st.button("I'm Feeling Lucky✨")
 if click:
