@@ -48,11 +48,13 @@ def recommend(query):
     )
 
     try:
-        questions = client.collections.get("FoodRecommend")
+        questions = client.collections.get("tasty")
         # Retrieval
-        response = questions.query.near_text(
+        response = questions.query.hybrid(
             query=query,
-            limit=6
+            limit=8,
+            alpha=0.5,
+            query_properties=["dish", "description", "cuisine", "category"],
         )
         data = extract_features(response)
         # with open("resp.json", 'w') as file:
