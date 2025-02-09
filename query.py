@@ -38,7 +38,7 @@ def recommend(query):
 
     result =  {}
     first = {}
-    client = weaviate.connect_to_wcs(
+    client = weaviate.connect_to_weaviate_cloud(
         cluster_url=st.secrets["CLUSTER_URL"],
         auth_credentials=weaviate.auth.AuthApiKey(st.secrets["Weav_API_KEY"]),
         headers={
