@@ -104,11 +104,11 @@ if preference_query:
     with recommendation_row:
 
         try:
-            rec_items = list(recommendations.items())
+            rec_items = recommendations
             cols = st.columns(len(rec_items))
             
         except StreamlitAPIException:
-            rec_items = list(recommendations.items())
+          
             st.info("We could not find any results for your request but you might like.")
             
               # Set a column for each recommendation
@@ -147,7 +147,7 @@ for item in menu_limited:
                 #     allergy=excluded_allergies  # Add logic to handle exclusions in RecommendationFilter
                 # )
                 try:
-                    rec_items = list(recommendations.items())
+                    rec_items = recommendations
                     st.info("We could not find any results for your request but you might like.")
                     cols = st.columns(len(rec_items))
                 except Exception as e:
