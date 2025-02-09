@@ -73,7 +73,7 @@ def recommend(query):
         st.write("An error occurred. Please try again. Sorry, your tastes to complex to be catered for by us😝")
     finally:
         client.close()  # Close client gracefully
-    return result, first
+    return data, first
 # ##################################################################
 st.title("tAIsty😋")
 with open("data.json", "r") as f:
@@ -93,25 +93,23 @@ excluded_allergies = st.sidebar.multiselect("Exclude Allergies", ["Contains dair
 # Fetch recommendations based on combined preferences
 if preference_query:
     recommendations, _ = recommend(preference_query)
-    # filtered_recommendations = RecommendationFilter.filter_recommendations(
-    #     recommendations,
-    #     cuisine=selected_cuisine,
-    #     category=selected_category,
-    #     allergy=excluded_allergies
-    # )
+    filtered_recommendations = RecommendationFilter.filter_recommendations(
+        recommendations,
+        cuisine=selected_cuisine,
+        category=selected_category,
+        allergy=excluded_allergies
+    )
     st.subheader("Recommended for You")
     recommendation_row = st.container()
     with recommendation_row:
 
         try:
-            rec_items = recommendations
-            st.write(rec_items)
+            rec_items = list(filtered_recommendations.items())
             cols = st.columns(len(rec_items))
-            
         except StreamlitAPIException:
-          
+            rec_items = list(recommendations.items())
             st.info("We could not find any results for your request but you might like.")
-            
+            cols = st.columns(len(rec_items))
               # Set a column for each recommendation
         for idx, (dish_name, rec) in enumerate(rec_items):
             with cols[idx]:
@@ -141,18 +139,19 @@ for item in menu_limited:
             with st.spinner(f"Generating recommendations for {item['dish']}...✨"):
                 # Call your recommendation function here
                 recommendations, first = recommend(item["dish"])
-                # filtered_recommendations = RecommendationFilter.filter_recommendations(
-                #     recommendations,
-                #     cuisine=selected_cuisine,
-                #     category=selected_category,
-                #     allergy=excluded_allergies  # Add logic to handle exclusions in RecommendationFilter
-                # )
+                filtered_recommendations = RecommendationFilter.filter_recommendations(
+                    recommendations,
+                    cuisine=selected_cuisine,
+                    category=selected_category,
+                    allergy=excluded_allergies  # Add logic to handle exclusions in RecommendationFilter
+                )
                 try:
-                    rec_items = recommendations
+                    rec_items = list(filtered_recommendations.items())
+                    cols = st.columns(len(rec_items))
+                except StreamlitAPIException:
+                    rec_items = list(recommendations.items())
                     st.info("We could not find any results for your request but you might like.")
                     cols = st.columns(len(rec_items))
-                except Exception as e:
-                    st.info(e)
                 for idx, (dish_name, rec) in enumerate(rec_items):
                     with cols[idx]:
                         card = Card(dish_name, rec)
