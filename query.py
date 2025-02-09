@@ -150,6 +150,8 @@ for item in menu_limited:
                     rec_items = list(recommendations.items())
                     st.info("We could not find any results for your request but you might like.")
                     cols = st.columns(len(rec_items))
+                except Exception as e:
+                    st.info(e)
                 for idx, (dish_name, rec) in enumerate(rec_items):
                     with cols[idx]:
                         card = Card(dish_name, rec)
