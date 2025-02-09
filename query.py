@@ -104,7 +104,7 @@ if preference_query:
     with recommendation_row:
 
         try:
-            rec_items = list(recommendations.items()
+            rec_items = list(recommendations.items())
             cols = st.columns(len(rec_items))
             
         except StreamlitAPIException:
