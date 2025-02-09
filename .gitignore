@@ -2,3 +2,5 @@
 weav.py
 vg
 *.toml
+*.ipynb
+.ipynb_checkpoints
