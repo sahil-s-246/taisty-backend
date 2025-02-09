@@ -93,23 +93,24 @@ excluded_allergies = st.sidebar.multiselect("Exclude Allergies", ["Contains dair
 # Fetch recommendations based on combined preferences
 if preference_query:
     recommendations, _ = recommend(preference_query)
-    filtered_recommendations = RecommendationFilter.filter_recommendations(
-        recommendations,
-        cuisine=selected_cuisine,
-        category=selected_category,
-        allergy=excluded_allergies
-    )
+    # filtered_recommendations = RecommendationFilter.filter_recommendations(
+    #     recommendations,
+    #     cuisine=selected_cuisine,
+    #     category=selected_category,
+    #     allergy=excluded_allergies
+    # )
     st.subheader("Recommended for You")
     recommendation_row = st.container()
     with recommendation_row:
 
         try:
-            rec_items = list(filtered_recommendations.items())
+            rec_items = list(recommendations.items()
             cols = st.columns(len(rec_items))
+            
         except StreamlitAPIException:
             rec_items = list(recommendations.items())
             st.info("We could not find any results for your request but you might like.")
-            cols = st.columns(len(rec_items))
+            
               # Set a column for each recommendation
         for idx, (dish_name, rec) in enumerate(rec_items):
             with cols[idx]:
@@ -139,16 +140,13 @@ for item in menu_limited:
             with st.spinner(f"Generating recommendations for {item['dish']}...✨"):
                 # Call your recommendation function here
                 recommendations, first = recommend(item["dish"])
-                filtered_recommendations = RecommendationFilter.filter_recommendations(
-                    recommendations,
-                    cuisine=selected_cuisine,
-                    category=selected_category,
-                    allergy=excluded_allergies  # Add logic to handle exclusions in RecommendationFilter
-                )
+                # filtered_recommendations = RecommendationFilter.filter_recommendations(
+                #     recommendations,
+                #     cuisine=selected_cuisine,
+                #     category=selected_category,
+                #     allergy=excluded_allergies  # Add logic to handle exclusions in RecommendationFilter
+                # )
                 try:
-                    rec_items = list(filtered_recommendations.items())
-                    cols = st.columns(len(rec_items))
-                except StreamlitAPIException:
                     rec_items = list(recommendations.items())
                     st.info("We could not find any results for your request but you might like.")
                     cols = st.columns(len(rec_items))
