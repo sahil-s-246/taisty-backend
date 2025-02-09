@@ -105,6 +105,7 @@ if preference_query:
 
         try:
             rec_items = recommendations
+            st.write(rec_items)
             cols = st.columns(len(rec_items))
             
         except StreamlitAPIException:
