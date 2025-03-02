@@ -1,4 +1,6 @@
 import json
+import os
+
 import streamlit as st
 import weaviate
 import google.generativeai as genai
@@ -7,12 +9,14 @@ from streamlit.errors import StreamlitAPIException
 from PIL import Image
 import requests
 import io
+import traceback
+from dotenv import load_dotenv
 from weaviate.exceptions import WeaviateQueryError
 from card import Card
 from filter import RecommendationFilter
 
-
-genai.configure(api_key=st.secrets["API_KEY"])
+load_dotenv()
+genai.configure(api_key=os.getenv("API_KEY"))
 model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
 
@@ -38,17 +42,18 @@ def recommend(query):
 
     result =  {}
     first = {}
-    client = weaviate.connect_to_wcs(
-        cluster_url=st.secrets["CLUSTER_URL"],
-        auth_credentials=weaviate.auth.AuthApiKey(st.secrets["Weav_API_KEY"]),
+    client = weaviate.connect_to_weaviate_cloud(
+        cluster_url=os.getenv("CLUSTER_URL"),
+        auth_credentials=weaviate.auth.AuthApiKey(os.getenv("Weav_API_KEY")),
         headers={
 
-            "X-HuggingFace-Api-Key": st.secrets["hf_key"]
+            "X-HuggingFace-Api-Key": os.getenv("hf_key")
         }
     )
-
+    data = {}
     try:
         questions = client.collections.get("tasty")
+
         # Retrieval
         response = questions.query.hybrid(
             query=query,
@@ -56,6 +61,7 @@ def recommend(query):
             alpha=0.5,
             query_properties=["dish", "description", "cuisine", "category"],
         )
+
         data = extract_features(response)
         # with open("resp.json", 'w') as file:
         #     json.dump(data, file, indent=4)
@@ -70,10 +76,13 @@ def recommend(query):
         first = result[list(result.keys())[0]]
 
     except WeaviateQueryError:
-        st.write("An error occurred. Please try again. Sorry, your tastes to complex to be catered for by us😝")
+        print(traceback.format_exc())
+    except Exception as e:
+
+        traceback.print_exc()
     finally:
         client.close()  # Close client gracefully
-    return result, first
+    return data, first
 # ##################################################################
 st.title("tAIsty😋")
 with open("data.json", "r") as f:
