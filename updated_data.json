@@ -1,0 +1,908 @@
+[
+    {
+        "cuisine": "Indian",
+        "dish": "Paneer Butter Masala",
+        "category": "Veg",
+        "description": "A rich and creamy tomato-based curry with soft paneer cubes, delicately spiced for a mild heat.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Paneer",
+            "Tomato",
+            "Butter",
+            "Cream",
+            "Spices"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Chicken Biryani",
+        "category": "Non-Veg",
+        "description": "A fragrant and flavorful rice dish with tender chicken pieces, infused with aromatic spices and saffron. Spicy.",
+        "allergy": "Contains nuts",
+        "ingredients": [
+            "Chicken",
+            "Basmati Rice",
+            "Saffron",
+            "Yogurt",
+            "Spices"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Gulab Jamun",
+        "category": "Veg",
+        "description": "Sweet and soft milk-based balls soaked in a fragrant sugar syrup, perfect for a delightful end to your meal.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Milk Powder",
+            "Flour",
+            "Sugar",
+            "Cardamom",
+            "Ghee"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Masala Dosa",
+        "category": "Veg",
+        "description": "A crispy rice pancake filled with spiced potato mixture, served with coconut chutney and sambar. Mildly spicy.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Rice",
+            "Lentils",
+            "Potatoes",
+            "Mustard Seeds",
+            "Chili"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Rogan Josh",
+        "category": "Non-Veg",
+        "description": "A flavorful and spicy lamb curry, slow-cooked with aromatic spices and yogurt.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Lamb",
+            "Onion",
+            "Yogurt",
+            "Ginger",
+            "Garlic"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Aloo Gobi",
+        "category": "Veg",
+        "description": "A classic combination of potatoes and cauliflower, cooked with spices and herbs. Mildly spicy.",
+        "allergy": "None",
+        "ingredients": [
+            "Potatoes",
+            "Cauliflower",
+            "Turmeric",
+            "Cumin",
+            "Coriander"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Samosa",
+        "category": "Veg",
+        "description": "Golden fried pastry filled with a savory mixture of spiced potatoes and peas. Mildly spicy.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Flour",
+            "Potatoes",
+            "Peas",
+            "Cumin",
+            "Chili"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Butter Chicken",
+        "category": "Non-Veg",
+        "description": "Tender chicken pieces in a creamy tomato-based sauce, with a perfect balance of spices. Mildly spicy.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Chicken",
+            "Tomato",
+            "Butter",
+            "Cream",
+            "Spices"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Chole Bhature",
+        "category": "Veg",
+        "description": "Spiced chickpea curry served with deep-fried puffed bread. A hearty and satisfying meal. Mildly spicy.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Chickpeas",
+            "Flour",
+            "Yogurt",
+            "Cumin",
+            "Coriander"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Lassi",
+        "category": "Veg",
+        "description": "A refreshing yogurt-based drink, available in sweet or salted flavors.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Yogurt",
+            "Milk",
+            "Sugar",
+            "Cardamom",
+            "Rose Water"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Sushi",
+        "category": "Non-Veg",
+        "description": "A delightful combination of vinegared rice and fresh raw fish, paired with crisp vegetables. Can be spicy.",
+        "allergy": "Contains seafood, soy",
+        "ingredients": [
+            "Rice",
+            "Nori",
+            "Fish",
+            "Soy Sauce",
+            "Wasabi"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Miso Soup",
+        "category": "Veg",
+        "description": "A traditional Japanese soup with tofu, seaweed, and a savory miso paste broth.",
+        "allergy": "Contains soy",
+        "ingredients": [
+            "Miso Paste",
+            "Tofu",
+            "Seaweed",
+            "Dashi",
+            "Green Onion"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Tempura",
+        "category": "Non-Veg",
+        "description": "Lightly battered and deep-fried seafood and vegetables, served with a dipping sauce.",
+        "allergy": "Contains gluten, seafood",
+        "ingredients": [
+            "Flour",
+            "Egg",
+            "Shrimp",
+            "Vegetables",
+            "Soy Sauce"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Mochi",
+        "category": "Veg",
+        "description": "Sweet glutinous rice cakes filled with a variety of fillings, including red bean paste.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Glutinous Rice",
+            "Sugar",
+            "Red Bean Paste",
+            "Cornstarch",
+            "Matcha"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Ramen",
+        "category": "Non-Veg",
+        "description": "A hearty noodle soup with a rich broth, slices of meat, and fresh vegetables. Can be spicy.",
+        "allergy": "Contains gluten, soy",
+        "ingredients": [
+            "Noodles",
+            "Broth",
+            "Pork",
+            "Soy Sauce",
+            "Egg"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Okonomiyaki",
+        "category": "Non-Veg",
+        "description": "A savory pancake with various ingredients, such as seafood, meat, and vegetables, drizzled with special sauces.",
+        "allergy": "Contains gluten, seafood",
+        "ingredients": [
+            "Flour",
+            "Cabbage",
+            "Egg",
+            "Seafood",
+            "Okonomiyaki Sauce"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Teriyaki Chicken",
+        "category": "Non-Veg",
+        "description": "Grilled chicken glazed with a sweet and savory teriyaki sauce, served with steamed rice.",
+        "allergy": "Contains soy",
+        "ingredients": [
+            "Chicken",
+            "Soy Sauce",
+            "Ginger",
+            "Garlic",
+            "Sugar"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Edamame",
+        "category": "Veg",
+        "description": "Boiled young soybeans in the pod, lightly salted. A healthy and delicious appetizer.",
+        "allergy": "Contains soy",
+        "ingredients": [
+            "Soybeans",
+            "Salt",
+            "Water",
+            "Garlic",
+            "Chili"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Green Tea Ice Cream",
+        "category": "Veg",
+        "description": "A creamy dessert made with the subtle, earthy flavor of matcha green tea.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Milk",
+            "Cream",
+            "Sugar",
+            "Matcha",
+            "Egg Yolks"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Sashimi",
+        "category": "Non-Veg",
+        "description": "Exquisite thinly sliced raw fish or seafood, served without rice for a pure taste experience.",
+        "allergy": "Contains seafood",
+        "ingredients": [
+            "Raw Fish",
+            "Soy Sauce",
+            "Wasabi",
+            "Radish",
+            "Ginger"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Biryani",
+        "category": "Non-Veg",
+        "description": "Aromatic basmati rice cooked with spices and tender pieces of meat. Served with raita. Spicy.",
+        "allergy": "Contains nuts",
+        "ingredients": [
+            "Rice",
+            "Meat",
+            "Yogurt",
+            "Saffron",
+            "Spices"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Palak Paneer",
+        "category": "Veg",
+        "description": "A nutritious and flavorful spinach-based curry with soft paneer cubes. Mildly spicy.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Spinach",
+            "Paneer",
+            "Cream",
+            "Garlic",
+            "Cumin"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Jalebi",
+        "category": "Veg",
+        "description": "Crispy, deep-fried spirals of batter soaked in a fragrant sugar syrup. A sweet delight.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Flour",
+            "Sugar",
+            "Cardamom",
+            "Saffron",
+            "Ghee"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Takoyaki",
+        "category": "Non-Veg",
+        "description": "Ball-shaped snack filled with diced octopus, topped with savory sauces and bonito flakes.",
+        "allergy": "Contains seafood, gluten",
+        "ingredients": [
+            "Flour",
+            "Octopus",
+            "Egg",
+            "Ginger",
+            "Green Onion"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Ramen",
+        "category": "Non-Veg",
+        "description": "Japanese noodle soup dish with Chinese-style wheat noodles served in a meat or fish-based broth, often flavored with soy sauce or miso, and uses toppings such as sliced pork, nori, menma, and scallions.",
+        "allergy": "Contains gluten, soy",
+        "ingredients": [
+            "Noodles",
+            "Broth",
+            "Pork",
+            "Soy Sauce",
+            "Egg"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Tempura",
+        "category": "Non-Veg",
+        "description": "Battered and deep-fried seafood and vegetables, served with a dipping sauce. Crispy and delicious.",
+        "allergy": "Contains gluten, seafood",
+        "ingredients": [
+            "Flour",
+            "Egg",
+            "Shrimp",
+            "Vegetables",
+            "Soy Sauce"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Miso Soup",
+        "category": "Veg",
+        "description": "Traditional Japanese soup consisting of a dashi stock into which softened miso paste is mixed, along with tofu, seaweed, and green onions.",
+        "allergy": "Contains soy",
+        "ingredients": [
+            "Miso Paste",
+            "Tofu",
+            "Seaweed",
+            "Dashi",
+            "Green Onion"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Onigiri",
+        "category": "Veg",
+        "description": "Rice balls typically filled with umeboshi (pickled plum), salmon, or other salty or sour ingredients, wrapped in nori.",
+        "allergy": "Contains seafood (if filled)",
+        "ingredients": [
+            "Rice",
+            "Nori",
+            "Pickled Plum",
+            "Salmon",
+            "Sesame Seeds"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Okonomiyaki",
+        "category": "Non-Veg",
+        "description": "Savory pancake containing a variety of ingredients like cabbage, meat, and seafood, topped with okonomiyaki sauce, mayonnaise, and bonito flakes.",
+        "allergy": "Contains gluten, seafood, soy",
+        "ingredients": [
+            "Flour",
+            "Cabbage",
+            "Egg",
+            "Seafood",
+            "Okonomiyaki Sauce"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Katsu Curry",
+        "category": "Non-Veg",
+        "description": "Japanese curry served with a breaded, deep-fried pork cutlet on top of rice.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Pork Cutlet",
+            "Flour",
+            "Curry",
+            "Rice",
+            "Egg"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Yakitori",
+        "category": "Non-Veg",
+        "description": "Grilled chicken skewers, often seasoned with tare sauce or salt.",
+        "allergy": "None",
+        "ingredients": [
+            "Chicken",
+            "Soy Sauce",
+            "Skewers",
+            "Ginger",
+            "Garlic"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Takoyaki",
+        "category": "Non-Veg",
+        "description": "Ball-shaped Japanese snack made of a wheat flour-based batter and cooked in a special molded pan, typically filled with minced or diced octopus, tempura scraps, pickled ginger, and green onion.",
+        "allergy": "Contains gluten, seafood",
+        "ingredients": [
+            "Flour",
+            "Octopus",
+            "Egg",
+            "Ginger",
+            "Green Onion"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Tonkatsu",
+        "category": "Non-Veg",
+        "description": "Breaded and deep-fried pork cutlet, usually served with shredded cabbage and a thick tonkatsu sauce.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Pork",
+            "Panko",
+            "Egg",
+            "Cabbage",
+            "Tonkatsu Sauce"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Matcha Ice Cream",
+        "category": "Veg",
+        "description": "Creamy and rich ice cream flavored with matcha green tea powder.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Milk",
+            "Cream",
+            "Sugar",
+            "Matcha",
+            "Egg Yolks"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Nihari",
+        "category": "Non-Veg",
+        "description": "Slow-cooked stew of meat, typically beef or lamb, along with spices. Traditionally eaten as a breakfast dish.",
+        "allergy": "None",
+        "ingredients": [
+            "Beef",
+            "Spices",
+            "Ginger",
+            "Garlic",
+            "Yogurt"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Paneer Butter Masala",
+        "category": "Veg",
+        "description": "Cottage cheese cubes cooked in a rich and creamy tomato-based gravy, mildly spiced and buttery.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Paneer",
+            "Tomato",
+            "Butter",
+            "Cream",
+            "Spices"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Rajma",
+        "category": "Veg",
+        "description": "Red kidney beans cooked in a thick tomato-based gravy with spices. A popular North Indian dish.",
+        "allergy": "None",
+        "ingredients": [
+            "Kidney Beans",
+            "Tomato",
+            "Onion",
+            "Cumin",
+            "Ginger"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Tandoori Chicken",
+        "category": "Non-Veg",
+        "description": "Chicken marinated in yogurt and spices, cooked in a tandoor (clay oven), resulting in a smoky flavor and tender meat.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Chicken",
+            "Yogurt",
+            "Spices",
+            "Garlic",
+            "Lemon Juice"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Vada Pav",
+        "category": "Veg",
+        "description": "A popular street food from Mumbai, consisting of a spicy potato fritter (vada) sandwiched in a bread roll (pav).",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Potatoes",
+            "Flour",
+            "Garlic",
+            "Chili",
+            "Coriander"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Biryani",
+        "category": "Non-Veg",
+        "description": "Aromatic rice dish cooked with spices, herbs, and marinated meat or vegetables. Often garnished with fried onions and boiled eggs.",
+        "allergy": "Contains nuts (sometimes)",
+        "ingredients": [
+            "Rice",
+            "Meat",
+            "Yogurt",
+            "Saffron",
+            "Spices"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Palak Paneer",
+        "category": "Veg",
+        "description": "Cottage cheese cubes cooked in a smooth and creamy spinach gravy, flavored with spices.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Spinach",
+            "Paneer",
+            "Cream",
+            "Garlic",
+            "Cumin"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Rasmalai",
+        "category": "Veg",
+        "description": "Soft and spongy cottage cheese balls soaked in a creamy, sweetened milk flavored with cardamom and saffron.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Milk",
+            "Sugar",
+            "Cardamom",
+            "Saffron",
+            "Pistachios"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Paneer Tikka",
+        "category": "Veg",
+        "description": "Marinated cubes of cottage cheese grilled or baked until slightly charred. Served with mint chutney.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Paneer",
+            "Yogurt",
+            "Spices",
+            "Bell Pepper",
+            "Onion"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Dal Tadka",
+        "category": "Veg",
+        "description": "Yellow lentils cooked with spices and tempered with ghee, garlic, and red chilies. A comforting and hearty dish.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Lentils",
+            "Garlic",
+            "Ghee",
+            "Cumin",
+            "Turmeric"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Misal Pav",
+        "category": "Veg",
+        "description": "A spicy curry made from sprouted moth beans, served with pav (bread rolls). Garnished with onions, lemon, and farsan.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Moth Beans",
+            "Pav",
+            "Onions",
+            "Chili",
+            "Farsan"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Khichdi",
+        "category": "Veg",
+        "description": "Comfort food made from rice and lentils, cooked with spices and ghee. Easy to digest and nutritious.",
+        "allergy": "None",
+        "ingredients": [
+            "Rice",
+            "Lentils",
+            "Turmeric",
+            "Ghee",
+            "Cumin"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Chicken Katsu",
+        "category": "Non-Veg",
+        "description": "Breaded and deep-fried chicken cutlet, often served with tonkatsu sauce and shredded cabbage.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Chicken",
+            "Panko",
+            "Egg",
+            "Flour",
+            "Soy Sauce"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Mochi",
+        "category": "Veg",
+        "description": "Chewy rice cake made from glutinous rice pounded into a paste and molded into shape. Often filled with sweet red bean paste.",
+        "allergy": "None",
+        "ingredients": [
+            "Glutinous Rice",
+            "Sugar",
+            "Red Bean Paste",
+            "Cornstarch",
+            "Matcha"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Chicken Yakitori",
+        "category": "Non-Veg",
+        "description": "Grilled chicken skewers seasoned with tare sauce or salt. A popular street food and bar snack.",
+        "allergy": "None",
+        "ingredients": []
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Miso Ramen",
+        "category": "Non-Veg",
+        "description": "Noodle soup in a miso-based broth, topped with vegetables, pork, and sometimes corn and butter.",
+        "allergy": "Contains gluten, soy",
+        "ingredients": []
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Soba Noodles",
+        "category": "Veg",
+        "description": "Thin noodles made from buckwheat flour, served either chilled with a dipping sauce or in hot broth as a noodle soup.",
+        "allergy": "Contains gluten",
+        "ingredients": []
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Gyudon",
+        "category": "Non-Veg",
+        "description": "Beef and onion simmered in a mildly sweet sauce of dashi, soy sauce, and mirin, served over rice.",
+        "allergy": "Contains soy",
+        "ingredients": [
+            "Beef",
+            "Soy Sauce",
+            "Onion",
+            "Dashi",
+            "Mirin"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Karaage",
+        "category": "Non-Veg",
+        "description": "Japanese style fried chicken, marinated in soy sauce, ginger, and garlic, then coated in flour and deep-fried.",
+        "allergy": "Contains gluten, soy",
+        "ingredients": [
+            "Chicken",
+            "Soy Sauce",
+            "Ginger",
+            "Garlic",
+            "Flour"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Tamagoyaki",
+        "category": "Veg",
+        "description": "Rolled omelette seasoned with soy sauce and sugar, often served as a side dish or sushi topping.",
+        "allergy": "Contains eggs, soy",
+        "ingredients": [
+            "Egg",
+            "Soy Sauce",
+            "Sugar",
+            "Dashi",
+            "Mirin"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Oyakodon",
+        "category": "Non-Veg",
+        "description": "Chicken and egg simmered together in a savory-sweet sauce, served over a bowl of rice.",
+        "allergy": "Contains soy, eggs",
+        "ingredients": [
+            "Chicken",
+            "Egg",
+            "Soy Sauce",
+            "Onion",
+            "Dashi"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Curry Udon",
+        "category": "Non-Veg",
+        "description": "Udon noodles in a thick curry-flavored soup, often served with chunks of meat and vegetables.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Udon Noodles",
+            "Curry",
+            "Broth",
+            "Meat",
+            "Vegetables"
+        ]
+    },
+    {
+        "cuisine": "Japanese",
+        "dish": "Gyoza",
+        "category": "Non-Veg",
+        "description": "Japanese dumplings filled with ground meat and vegetables, typically served with a dipping sauce.",
+        "allergy": "Contains gluten, soy",
+        "ingredients": [
+            "Dough",
+            "Ground Meat",
+            "Cabbage",
+            "Garlic",
+            "Soy Sauce"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Kashmiri Pulao",
+        "category": "Veg",
+        "description": "Aromatic rice dish cooked with saffron, nuts, and dried fruits. A flavorful and fragrant dish from Kashmir.",
+        "allergy": "Contains nuts",
+        "ingredients": [
+            "Rice",
+            "Saffron",
+            "Nuts",
+            "Dried Fruits",
+            "Ghee"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Fish Curry",
+        "category": "Non-Veg",
+        "description": "Fish cooked in a spicy curry sauce.",
+        "allergy": "Contains seafood",
+        "ingredients": [
+            "Fish",
+            "Tomato",
+            "Coconut Milk",
+            "Spices",
+            "Garlic"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Pav Bhaji",
+        "category": "Veg",
+        "description": "A spicy vegetable mash served with buttered bread rolls. A popular street food from Mumbai.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Potatoes",
+            "Tomato",
+            "Capsicum",
+            "Butter",
+            "Pav"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Raita",
+        "category": "Veg",
+        "description": "A side dish made with yogurt, cucumbers, and spices. Often served with biryani or pulao.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Yogurt",
+            "Cucumber",
+            "Cumin",
+            "Mint",
+            "Salt"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Kheer",
+        "category": "Veg",
+        "description": "Rice pudding made with milk, sugar, and flavored with cardamom and saffron. Garnished with nuts.",
+        "allergy": "Contains dairy, nuts",
+        "ingredients": [
+            "Milk",
+            "Rice",
+            "Sugar",
+            "Cardamom",
+            "Almonds"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Sheer Korma",
+        "category": "Veg",
+        "description": "A rich and creamy dessert made with vermicelli, milk, dates, and nuts. A traditional Eid dish.",
+        "allergy": "Contains dairy, nuts",
+        "ingredients": [
+            "Milk",
+            "Vermicelli",
+            "Dates",
+            "Nuts",
+            "Saffron"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Bhel Puri",
+        "category": "Veg",
+        "description": "A savory snack made of puffed rice, vegetables, and a tangy tamarind sauce. A popular street food.",
+        "allergy": "Contains peanuts (sometimes)",
+        "ingredients": [
+            "Puffed Rice",
+            "Tomato",
+            "Tamarind",
+            "Peanuts",
+            "Sev"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Pani Puri",
+        "category": "Veg",
+        "description": "Crispy hollow puris filled with spicy tangy water, tamarind chutney, and a mixture of chickpeas and potatoes.",
+        "allergy": "Contains gluten",
+        "ingredients": [
+            "Flour",
+            "Chickpeas",
+            "Potatoes",
+            "Tamarind",
+            "Mint"
+        ]
+    },
+    {
+        "cuisine": "Indian",
+        "dish": "Paneer Bhurji",
+        "category": "Veg",
+        "description": "Scrambled paneer cooked with onions, tomatoes, and spices. A quick and easy dish.",
+        "allergy": "Contains dairy",
+        "ingredients": [
+            "Paneer",
+            "Onion",
+            "Tomato",
+            "Cumin",
+            "Chili"
+        ]
+    }
+]

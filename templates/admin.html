@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ingredient Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 20px; }
+        table { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mb-3">Ingredient Admin Panel</h2>
+
+
+        <table class="table table-striped">
+            <tr>
+                <th>Ingredient</th>
+                <th>Used In Dishes</th>
+                <th>Shelf Life (Days)</th>
+                <th>Expiry Date</th>
+            </tr>
+            {% for ingredient, data in ingredient_dish_map.items() %}
+            <tr>
+                <td>{{ ingredient }}</td>
+                <td>{{ ", ".join(data.dishes) }}</td>
+                <td>{{ data.shelf_life }}</td>
+                <td>{{ data.expiry_date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h4>Add Ingredient Shelf Life</h4>
+        <form action="/add-ingredient" method="post" class="mb-4">
+            <div class="mb-3">
+                <label class="form-label">Ingredient Name:</label>
+                <input type="text" name="ingredient" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Shelf Life (Days):</label>
+                <input type="number" name="shelf_life" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Expiry Date (optional):</label>
+                <input type="date" name="expiry_date" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Shelf Life</button>
+        </form>
+    </div>
+</body>
+</html>
