@@ -9,6 +9,7 @@ import os
 load_dotenv()
 from fastapi.middleware.cors import CORSMiddleware
 from query import recommend
+from filter import RecommendationFilter
 app = FastAPI()
 import traceback
 # Add CORS middleware
@@ -74,42 +75,23 @@ def extract_features(query_result) -> Dict:
         }
     return extracted_data
 
-def filter_recommendations(recommendations: Dict, filters: FilterParams) -> Dict:
-    """Filter recommendations based on user preferences"""
-    if not filters:
-        return recommendations
-    
-    filtered = {}
-    for dish_name, details in recommendations.items():
-        # Check category filter
-        if filters.category != "Both":
-            if details.get("category") != filters.category:
-                continue
-                
-        # Check cuisine filter
-        if filters.cuisine != "Both":
-            if details.get("cuisine") != filters.cuisine:
-                continue
-                
-        # Check allergy filters
-        if filters.allergies:
-            allergen_found = False
-            for allergy in filters.allergies:
-                if allergy.lower() in details.get("allergy").lower():
-                    allergen_found = True
-                    break
-            if allergen_found:
-                continue
-                
-        filtered[dish_name] = details
-    return filtered
+
 
 @app.post("/more-like-this")
 async def more_like_this(request: dict):
-    """Get similar dishes when a specific dish is clicked"""
+    """Get similar dishes when a specific dish is clicked
+    Input -> {dish_name: str, filters:{cuisine:str,category:str,allergy:str}"""
     try:
 
+
         results, first = recommend(request["dish_name"])
+        if request["filters"]:
+            results = RecommendationFilter.filter_recommendations(
+                results,
+                cuisine=request["filters"].cuisine,
+                category=request["filters"].category,
+                allergy=request["filters"].allergies
+            )
         return results
     except Exception as e:
         print(traceback.format_exc())

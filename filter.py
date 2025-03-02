@@ -10,8 +10,8 @@ class RecommendationFilter:
             if cuisine != "Both":
                 if details.get("cuisine") != cuisine:
                     continue
-            for each in allergy:
-                if each.lower() in details.get("allergy").lower():
-                    break
+            if allergy:
+                if any(each.lower() in details.get("allergy", "").lower() for each in allergy):
+                    continue
             filtered[dish_name] = details
         return filtered
