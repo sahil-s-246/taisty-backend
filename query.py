@@ -44,7 +44,9 @@ def recommend(query):
     first = {}
     client = weaviate.connect_to_weaviate_cloud(
         cluster_url=os.getenv("CLUSTER_URL"),
-        auth_credentials=weaviate.auth.AuthApiKey(os.getenv("Weav_API_KEY")),
+        auth_credentials=weaviate.auth.AuthApiKey(os.getenv("Weav_API_KEY")
+
+                                                  ),
         headers={
 
             "X-HuggingFace-Api-Key": os.getenv("hf_key")

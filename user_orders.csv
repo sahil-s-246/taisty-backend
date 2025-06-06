@@ -1,0 +1,11 @@
+user_id,dish_id,order_count,feedback_score
+user1,Paneer Butter Masala,4,2
+user1,Chole Bhature,2,1
+user2,Chicken Biryani,3,2
+user2,Rogan Josh,4,1
+user3,Paneer Butter Masala,1,1
+user3,Gulab Jamun,5,2
+user4,Masala Dosa,3,2
+user4,Aloo Gobi,2,1
+user5,Samosa,2,2
+user5,Lassi,4,1
